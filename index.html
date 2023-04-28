@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" type="text/css" href="styles/general.css">
+        <link rel="stylesheet" type="text/css" href="styles/page.css">
+        <link rel="stylesheet" type="text/css" href="styles/buttons.css">
+        <link rel="stylesheet" type="text/css" href="styles/navigation.css">
+        <title>AWW Project</title>
+    </head>
+    <body>
+        <div id="page">
+
+            <header class="menu-bar">
+                <nav>
+                    <ul>
+                        <li><a href="#">File</a></li> 
+                        <li><a href="#">Edit</a></li>  
+                        <li><a href="#">Settings</a></li>  
+                        <li><a href="#">View</a></li>  
+                        <li><a href="#">Help</a></li>  
+                    </ul>
+                </nav>
+            </header>
+
+            <aside class="navigation">
+                <nav>
+                    <ul>
+                        <li><a href="#">main.c</a></li>
+                        <li><a href="#">CMakeLists.txt</a></li>
+                        <li><a href="#">main.h</a></li>
+                    </ul>
+                </nav>
+            </aside>
+            
+            <main class="code">
+                <div class="code-text"> 
+                    <pre>
+                        <code>
+    uint32_t game_board_width(game_t const *g) {
+        return (g == NULL || g->board == NULL) ? 0 : g->width;
+    }
+
+    uint32_t game_board_height(game_t const *g) {
+        return (g == NULL || g->board == NULL) ? 0 : g->height;
+    }
+                            
+    uint32_t game_players(game_t const *g) {
+        return g == NULL ? 0 : g->players_num;
+    }
+
+    char game_player(game_t const *g, uint32_t player) {
+        if (g == NULL || game_players(g) &lt; player) { 
+        return '.';
+    }
+
+    if (player 	&lt;= 9) {
+        return player + '0';
+    }
+        
+        return player - 10 + 'a';    
+    }
+    
+    char * game_board(game_t const *g) {
+        if (g == NULL) { 
+            return NULL; 
+        }
+    
+        char * board = (char *) malloc((size_t) g->width
+                                        * (size_t) (g->height + 1) + 1);
+    
+        if (board == NULL) { 
+            errno = ENOMEM;
+            return NULL;
+        }
+        else {
+            for (size_t i = 0; i &lt; g->width; i++) {
+                for (size_t j = 0; j &lt; g->height; j++)
+                    board[(i * (g->height + 1)) + j] = '.';
+                board[((i + 1) * g->height) + i] = '\n';
+            }
+            board[(size_t) g->width * (g->height + 1)] = '\0';
+    
+            for (size_t p = 0; p &lt; g->players_num; p++) {
+                player_t * player_tmp = g->players[p];
+                char players_symbol = game_player(g, p);
+                for (size_t i = 0; i &lt; player_tmp->complited_moves; i++) {
+                    board[player_tmp->moves[1][i] * (g->height + 1) 
+                            + player_tmp->moves[2][i]] = players_symbol;
+                }
+            }
+    
+            return board;
+        }
+    }
+                        </code>
+                    </pre>
+                </div>        
+                <div class="code-fragment">
+                    <pre>
+                        <code>
+    uint32_t game_board_height(game_t const *g) {
+        return (g == NULL || g->board == NULL) ? 0 : g->height;
+    }
+
+    uint32_t game_players(game_t const *g) {
+        return g == NULL ? 0 : g->players_num;
+    }
+                        </code>
+                    </pre>
+                </div>
+            </main>
+
+            <footer class="tabs">
+                <div class="tabs-buttons">
+                    <nav>
+                        <ul>
+                            <li><a href="#">TAB 1</a></li>
+                            <li><a href="#">TAB 2</a></li>
+                            <li><a href="#">TAB 3</a></li>
+                            <li><a href="#">TAB 4</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="tabs-dependencies">
+                    Tab-dependencies
+                </div>
+            </footer>
+        </div>   
+    </body>
+</html>

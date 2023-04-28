@@ -1,0 +1,44 @@
+.menu-bar, .tabs-buttons { 
+    position: static;    
+    height: 100%;  
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.menu-bar *, .tabs-buttons * {
+    display: inline;
+}
+
+ul {
+    padding-inline-start: 0;
+}
+
+.menu-bar li, .tabs-buttons li {
+    padding: 3px 14px;
+}
+
+.tabs-buttons li {
+    background-color: var(--button-hvr-color);
+    border-radius: 15px 15px 3px 3px;   
+}
+
+.menu-bar li:hover, .tabs-buttons li:hover {
+    color: white;
+    border-radius: 5px;
+}
+
+.menu-bar li:hover {
+    background-color: var(--button-hvr-color);
+}
+
+.tabs-buttons li:hover {
+    background-color: var(--tabs-button-color);
+}
+
+.menu-bar li a, .tabs-buttons li a {
+    color: wheat;  
+    text-decoration: none;  
+    font-size: 17px;
+    font-family: Verdana, sans-serif;
+}

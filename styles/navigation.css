@@ -1,0 +1,40 @@
+.navigation li {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 18px;
+    padding-left: 5%;
+}
+
+.navigation ul li a {
+    padding: 3px 5px;
+    text-decoration: none;
+    color: black;
+}
+
+.code-text, .code-fragment {
+    min-width: 0;
+    min-height: 0;
+    width: 100%;
+    overflow: scroll;
+}
+
+.code-text {
+    background-color: var(--code-text-bg-color);
+}
+
+.code-fragment {
+    background-color: var(--code-fragment-bg-color);
+}
+
+.tabs {
+    display: grid;
+    grid-template-rows: 1fr 3fr;
+}
+
+.tabs-buttons {
+    background-color: var(--tabs-bg-color);
+}
+
+.tabs-dependencies {
+    background-color: var(--tabs-dependencies-bg-color);
+}
